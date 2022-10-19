@@ -4,17 +4,24 @@
  */
 
 //const express = require('express')
+
 import express from 'express'; // <-- Module Style import
 import bodyParser from 'body-parser';
 
 // Importing user route
+//const express =require('express')
 import router from './routes/users.js';
-// const router = require('router')
+import connectToMongo from './db';
+ //const router = require('router')
 
-// const bodyParser = require('body-parser')
-
+ //const bodyParser = require('body-parser')
+ 
+ connectToMongo;
+ //const express=require('express');
+ //const router=express.Router();
 const app = express()
 const port = 3001
+
 
 app.use(bodyParser.json())
 // Adding a Router
