@@ -2,7 +2,8 @@ import React from 'react'
 import styled from "styled-components";
 import stylesignup from './stylesignup.css'
 import  {useState,setState} from 'react';
-import Axios from "axios";
+import Axios, { HttpStatusCode } from "axios";
+import axios from 'axios';
 
 const Container = styled.div`
 width: 100vw;
@@ -84,16 +85,28 @@ export function Signup  ()  {
 
 
 }
+async function postData(url='',data){
 
-
+  axios({
+    method:'post',
+    url: 'http://localhost:3001/Signup',
+    data:{
+      firstName:firstName,
+      lastName:lastName,
+      email:email,
+      password:password,
+      confirmPassword:confirmPassword
+    }
+  })
+}
 const handleSubmit = () =>{
-/*  let obj = {
-          firstName : firstName,
-          lastName:lastName,
-          email:email,
-          password:password,
-          confirmPassword:confirmPassword,
-      }       
+
+      postData('http://localhost:3001/Signup','abdullah')
+      console.log('ji');
+    
+      
+      
+      /*      
   const newPostKey = push(child(ref(database), 'posts')).key;
   const updates = {};
   updates['/' + newPostKey] = obj
@@ -134,7 +147,7 @@ const handleSubmit = () =>{
           <div class="footer">
             <Button>
             <div class="footer">
-                <button onClick={()=>handleSubmit()} type="submit" class="btn" style={{color:'white'}}>Register</button>
+                <button onClick={handleSubmit} type="submit" class="btn" style={{color:'white'}}>Register</button>
             </div>
             </Button>
               
@@ -145,4 +158,4 @@ const handleSubmit = () =>{
       </Container>
   
   )
-}
+  }

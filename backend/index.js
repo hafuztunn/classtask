@@ -35,6 +35,7 @@ var userSchema = mongoose.Schema({
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    
     next();
   });
 app.get("/Signup",(req,res , next)=>{
@@ -59,6 +60,67 @@ app.post("/Signup",(req,res,next)=>{
 
 })
 
+//account edit
+app.post("/Account",async (req,res,next)=>{
+
+  var e=req.body.email
+  console.log(e)
+   const exist=await user.findOne({email:e})
+
+   console.log(exist)
+   if(exist){
+    
+    var myquery = { email:e};
+    var newvalues = { $set: {firstname:req.body.firstName, lastname:req.body.lastName } };
+    db.collection("customers").updateOne(myquery, newvalues, function(err, res) {
+      if (err) throw err;
+      console.log("1 document updated");
+     // db.close();
+    });
+
+    const exist2=await user.findOne({email:e})
+    
+    console.log("email found")
+ 
+    res.send(exist2)
+   }
+   else{
+    console.log("not exist")
+   }
+
+})
+
+
+//login
+app.post("/Login",async (req,res,next)=>{
+
+  var e=req.body.email
+   const exist=await user.findOne({email:e})
+
+   console.log(exist)
+   if(exist){
+    
+// MongoClient.connect(url, function(err, db) {
+//     if (err) throw err;
+//     var dbo = db.db("assignment-1");
+//     var query = { email: e };
+//     dbo.collection("customers").find(query).toArray(function(err, result) {
+//       if (err) throw err;
+//       db.close();
+//     });
+//   }); 
+
+    
+    console.log("email found")
+ 
+    res.send(exist)
+   }
+   else{
+    console.log("not exist")
+   }
+
+})
+
 app.post("/Signup",(req,res,next)=>{
 
     //const article = new cust(req.body)
@@ -68,4 +130,32 @@ app.post("/Signup",(req,res,next)=>{
 
 app.listen(3001,()=>{
     console.log("server started on port 3001")
+})
+
+
+
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/assignment-1';
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("assignment-1");
+  dbo.collection("customers").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result[2].email);
+    db.close();
+  });
+}); 
+
+
+
+
+
+
+
+app.get("/Account",(req,res,next)=>{
+
+    //const article = new cust(req.body)
+    console.log(req.body);
+
 })

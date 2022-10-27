@@ -1,5 +1,8 @@
 import styled from "styled-components";
-
+import  {useState,setState} from 'react';
+import Axios, { HttpStatusCode } from "axios";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 
 const Container = styled.div`
@@ -9,7 +12,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    url("https://wallpapercave.com/wp/aNjqEmf.jpg")
       center;
   background-size: cover;
   display: flex;
@@ -49,13 +52,14 @@ const contain = styled.input`
 `;
 
 const Button = styled.button`
-  width: 40%;
+  width: 50%;
+  height: 200px
   border: none;
-  padding: 15px 20px;
+  padding: 15px 32px;
   background-color: teal;
   color: white;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 1px;
 `;
 
 const Link = styled.a`
@@ -65,52 +69,100 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
-export function Login () {
+export function Login ({setcustomer}) {
 
+
+
+  const [email, setEmail] = useState(null);
+  const [password,setPassword] = useState(null);
+
+
+  const handleInputChange = (e) => {
+    const {id , value} = e.target;
+  
+    if(id === "email"){
+        setEmail(value);
+    }
+    if(id === "password"){
+        setPassword(value);
+    }
+    
+
+
+}
+
+
+const navigate = useNavigate();
+
+
+  async function postData(url='',data){
+
+    const x = axios({
+      method:'post',
+      url: 'http://localhost:3001/Login',
+      data:{
+      
+        email:email,
+        password:password
+      }
+    }).then(response=>{
+      console.log(response.data)
+      const details=response.data
+      setcustomer(details);
+    
+
+    }).catch(err=>{
+      console.log("err")
+    })
+  if(x){
+    navigate('/Account')
+    
+  }
+  }
+  
 
   const handleSubmit = () =>{
-    /*let obj = {
-            firstName : firstName,
-            lastName:lastName,
-            email:email,
-            password:password,
-            confirmPassword:confirmPassword,
-        }       
-    const newPostKey = push(child(ref(database), 'posts')).key;
-    const updates = {};
-    updates['/' + newPostKey] = obj
-    return update(ref(database), updates);
-      */}
+   
+    
+     postData('http://localhost:3001/Login','abdullah')
+     
+    
+  }
+  
   return (
     <Container>
-      <Wrapper>
-        <Title>SIGN IN</Title>
-        <Form>
-        <form>
-  <div className="Container" >
-    <label htmlfor="staticEmail" className="col-sm-2 col-form-label">Email</label>
-    <div className="col-sm-10">
-      <input type="text" readonly className="form-control-plaintext" id="staticEmail" placeholder="email@example.com"/>
-    </div>
-  </div>
 
-  <div className="Container">
-    <label htmlfor="inputPassword" className="col-sm-2 col-form-label">Password</label>
-    <div className="col-sm-10">
-      <input type="password" className="form-control" id="inputPassword" placeholder="Password"/>
-    </div> <div>
-    <Button>
+
+
+    <div className="form">
+          <div className="form-body">
+       
+            
+          
+            
+              <div className="email">
+                  <label className="form__label" htmlfor="email">Email </label>
+                  <input  type="email" id="email" className="form__input" value={email} onChange = {(e) => handleInputChange(e)} placeholder="Email"/>
+              </div>
+              <div className="password">
+                  <label className="form__label" htmlfor="password">Password </label>
+                  <input className="form__input" type="password"  id="password" value={password} onChange = {(e) => handleInputChange(e)} placeholder="Password"/>
+              </div>
+            
+            
+          </div>
+          <div class="footer">
+            <Button>
             <div class="footer">
-                <button onClick={()=>handleSubmit()} type="submit" class="btn" style={{color:'white'}}>Register</button>
+                <button onClick={handleSubmit} type="submit" class="btn" style={{color:'white'}}>Register</button>
             </div>
             </Button>
-        </div>
-  </div>
-  
-</form>
-</Form>
-      </Wrapper>
-    </Container>
+              
+          </div>
+          
+      </div>    
+     
+      </Container>
 
   );
 };

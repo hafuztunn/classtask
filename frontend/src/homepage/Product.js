@@ -4,7 +4,7 @@ import {
     ShoppingCartOutlined,
   } from "@material-ui/icons";
   import styled from "styled-components";
-  
+  import {Link} from "react-router-dom"
   const Info = styled.div`
     opacity: 0;
     width: 100%;
@@ -20,6 +20,15 @@ import {
     transition: all 0.5s ease;
     cursor: pointer;
   `;
+
+  const Button = styled.button`
+    border:10px;
+    padding: 10px;
+    background-color: white;
+    color:white;
+    cursor: pointer;
+    font-weight: 60;
+`;
   
   const Container = styled.div`
     flex: 1;
@@ -73,16 +82,17 @@ import {
         <Image src={item.img} />
         <Info>
           <Icon>
-            <ShoppingCartOutlined />
+      
+           <Link to="/Products">
+           <button className="btn btn-primary"  type="submit">ADD TO CART</button> 
+           </Link>
+           
           </Icon>
-          <Icon>
-            <SearchOutlined />
-          </Icon>
-          <Icon>
-            <FavoriteBorderOutlined />
-          </Icon>
+         
         </Info>
+        
       </Container>
+
     );
   };
   
