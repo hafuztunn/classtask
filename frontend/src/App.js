@@ -19,7 +19,7 @@ import Products from './homepage/Products';
 
 function App() {
   const [customer,setcustomer]=useState({})
-  console.log("this is "+ customer)
+ 
 
   return (
     <>

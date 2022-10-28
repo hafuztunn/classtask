@@ -70,7 +70,7 @@ export function Account  ({customer})  {
   
     const x = axios({
       method:'post',
-      url: 'http://localhost:3001/Account',
+      url: 'http://localhost:3001/Update',
       data:{
       
         email:customer.email,
@@ -82,6 +82,8 @@ export function Account  ({customer})  {
     })
  
   }
+
+
   
 
 
@@ -102,13 +104,45 @@ export function Account  ({customer})  {
  
 
 
+
+}
+
+
+
+async function postData2(url='',data){
+
+  
+  const x = axios({
+    method:'post',
+    url: 'http://localhost:3001/Delete',
+    data:{
+    
+      email:customer.email,
+      firstName:firstName,
+      lastName:lastName
+    }
+  }).catch(err=>{
+    console.log("err")
+  })
+
 }
 
 const handleSubmit = () =>{
 
-     postData('http://localhost:3001/Account','abdullah')
+     postData2('http://localhost:3001/Account/update','abdullah')
   
  }
+
+
+
+ const handleSubmit2 = () =>{
+
+  postData('http://localhost:3001/Account/update','abdullah')
+
+}
+
+
+ 
   return (
 
 <Container>
@@ -137,14 +171,14 @@ const handleSubmit = () =>{
           <div class="footer">
             <Button>
             <div class="footer">
-                <button onClick={handleSubmit} type="submit" class="btn" style={{color:'white'}}>Edit</button>
+                <button onClick={handleSubmit} formaction="/update" type="submit" class="btn" style={{color:'white'}}>Delete</button>
             </div>
             </Button>
 
 
             <Button>
             <div class="footer">
-                <button onClick={handleSubmit} type="submit" class="btn" style={{color:'white'}}>Delete</button>
+                <button onClick={handleSubmit2} formaction="/delete"type="submit" class="btn" style={{color:'white'}}>Edit</button>
             </div>
             </Button>
               

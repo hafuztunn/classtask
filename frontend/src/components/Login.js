@@ -109,13 +109,19 @@ const navigate = useNavigate();
       console.log(response.data)
       const details=response.data
       setcustomer(details);
+      if(response.data.email!=null){
+        navigate('/Account')
+        }
+        else{
+          console.log("invalid credentials")
+        }
     
 
     }).catch(err=>{
       console.log("err")
     })
   if(x){
-    navigate('/Account')
+   // navigate('/Account')
     
   }
   }
