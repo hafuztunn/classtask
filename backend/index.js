@@ -61,7 +61,7 @@ app.post("/Signup",(req,res,next)=>{
 })
 
 //account edit
-app.post("/Account",async (req,res,next)=>{
+app.post("/Update",async (req,res,next)=>{
 
   var e=req.body.email
   console.log(e)
@@ -89,6 +89,40 @@ app.post("/Account",async (req,res,next)=>{
    }
 
 })
+
+
+
+//account delete
+app.post("/Delete",async (req,res,next)=>{
+
+  var e=req.body.email
+  console.log(e)
+   const exist=await user.findOne({email:e})
+
+   console.log(exist)
+   if(exist){
+    
+    var myquery = { email:e};
+    db.collection("customers").deleteOne(myquery, function(err, obj) {
+      if (err) throw err;
+      console.log("1 document deleted");
+     // db.close();
+    });
+
+    const exist2=await user.findOne({email:e})
+    
+    console.log("email found")
+ 
+    res.send(exist2)
+   }
+   else{
+    console.log("not exist")
+   }
+
+})
+
+
+
 
 
 //login
