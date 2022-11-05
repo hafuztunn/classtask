@@ -25,5 +25,8 @@
     "url": "https://github.com/fast-isb/assignment-1-hafuztunn/issues"
   },
   "homepage": "https://github.com/fast-isb/assignment-1-hafuztunn#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
+  }
 }
