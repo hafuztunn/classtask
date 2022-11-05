@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
+  HashRouter,
   Route,
   
 } from "react-router-dom";
@@ -25,6 +26,7 @@ function App() {
     <>
 
     <Router>
+    <HashRouter>
    
     <Navbar/>
  
@@ -40,6 +42,7 @@ function App() {
 
           <Route   path="/Account" element={<Account customer={customer} />}/>
         </Routes>
+        </HashRouter>
         </Router>
     </>
   );

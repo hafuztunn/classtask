@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/hafuztunn.github.io/static/css/main.01ef4aaa.css",
+    "main.js": "/hafuztunn.github.io/static/js/main.0075a0df.js",
+    "static/js/787.cda612ba.chunk.js": "/hafuztunn.github.io/static/js/787.cda612ba.chunk.js",
+    "index.html": "/hafuztunn.github.io/index.html",
+    "main.01ef4aaa.css.map": "/hafuztunn.github.io/static/css/main.01ef4aaa.css.map",
+    "main.0075a0df.js.map": "/hafuztunn.github.io/static/js/main.0075a0df.js.map",
+    "787.cda612ba.chunk.js.map": "/hafuztunn.github.io/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.01ef4aaa.css",
+    "static/js/main.0075a0df.js"
+  ]
+}
